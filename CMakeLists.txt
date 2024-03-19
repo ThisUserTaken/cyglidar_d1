@@ -9,11 +9,11 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     add_compile_options(-Wall -Wextra -Wpedantic -O3)
 endif()
 
-set(CYGLIDAR_SDK_PATH "./sdk/")
+set(CYGLIDAR_SDK_PATH "/root/ros2_code/humble/cyglidar/src/cyglidar_d1/sdk/")
 FILE(GLOB CYGLIDAR_SDK_SRC
     "${CYGLIDAR_SDK_PATH}/src/*.cpp")
 
-set(CYGLIDAR_ROS_PATH "./D1_ROS2/")
+set(CYGLIDAR_ROS_PATH "/root/ros2_code/humble/cyglidar/src/cyglidar_d1/D1_ROS2/")
 FILE(GLOB CYGLIDAR_ROS_SRC
     "${CYGLIDAR_ROS_PATH}/src/*.cpp")
 
@@ -32,12 +32,20 @@ include_directories(
 
 link_directories(${PCL_LIBRARY_DIRS})
 
-add_executable(cyglidar_d1_publisher
-    ${CYGLIDAR_ROS_PATH}/D1_Publisher.cpp
-    ${CYGLIDAR_ROS_SRC}
-    ${CYGLIDAR_SDK_SRC})
 
-ament_target_dependencies(cyglidar_d1_publisher
+
+
+
+
+add_executable(cyglidar_d1_publisher_1
+    ${CYGLIDAR_ROS_PATH}/D1_Publisher.cpp
+    ${CYGLIDAR_ROS_PATH}/src/Topic2D.cpp
+    ${CYGLIDAR_ROS_PATH}/src/Topic3D.cpp
+    ${CYGLIDAR_ROS_PATH}/src/D1_Node_1.cpp
+    ${CYGLIDAR_SDK_SRC}
+    )
+
+ament_target_dependencies(cyglidar_d1_publisher_1
     rclcpp
     std_msgs
     sensor_msgs
@@ -45,8 +53,78 @@ ament_target_dependencies(cyglidar_d1_publisher
     PCL
 )
 
-install(TARGETS cyglidar_d1_publisher
+install(TARGETS cyglidar_d1_publisher_1
     DESTINATION lib/${PROJECT_NAME})
+
+
+
+
+
+add_executable(cyglidar_d1_publisher_2
+    ${CYGLIDAR_ROS_PATH}/D1_Publisher.cpp
+    ${CYGLIDAR_ROS_PATH}/src/Topic2D.cpp
+    ${CYGLIDAR_ROS_PATH}/src/Topic3D.cpp
+    ${CYGLIDAR_ROS_PATH}/src/D1_Node_2.cpp
+    ${CYGLIDAR_SDK_SRC}
+    )
+
+ament_target_dependencies(cyglidar_d1_publisher_2
+    rclcpp
+    std_msgs
+    sensor_msgs
+    Boost
+    PCL
+)
+
+install(TARGETS cyglidar_d1_publisher_2
+    DESTINATION lib/${PROJECT_NAME})
+
+
+
+add_executable(cyglidar_d1_publisher_3
+    ${CYGLIDAR_ROS_PATH}/D1_Publisher.cpp
+    ${CYGLIDAR_ROS_PATH}/src/Topic2D.cpp
+    ${CYGLIDAR_ROS_PATH}/src/Topic3D.cpp
+    ${CYGLIDAR_ROS_PATH}/src/D1_Node_3.cpp
+    ${CYGLIDAR_SDK_SRC}
+    )
+
+ament_target_dependencies(cyglidar_d1_publisher_3
+    rclcpp
+    std_msgs
+    sensor_msgs
+    Boost
+    PCL
+)
+
+install(TARGETS cyglidar_d1_publisher_3
+    DESTINATION lib/${PROJECT_NAME})
+
+
+
+add_executable(cyglidar_d1_publisher_4
+    ${CYGLIDAR_ROS_PATH}/D1_Publisher.cpp
+    ${CYGLIDAR_ROS_PATH}/src/Topic2D.cpp
+    ${CYGLIDAR_ROS_PATH}/src/Topic3D.cpp
+    ${CYGLIDAR_ROS_PATH}/src/D1_Node_4.cpp
+    ${CYGLIDAR_SDK_SRC}
+    )
+
+ament_target_dependencies(cyglidar_d1_publisher_4
+    rclcpp
+    std_msgs
+    sensor_msgs
+    Boost
+    PCL
+)
+
+install(TARGETS cyglidar_d1_publisher_4
+    DESTINATION lib/${PROJECT_NAME})
+
+
+
+
+
 
 install(DIRECTORY ${CYGLIDAR_SDK_PATH}/include ${CYGLIDAR_ROS_PATH}/include
     DESTINATION include)

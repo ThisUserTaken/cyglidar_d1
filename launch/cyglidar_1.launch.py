@@ -54,14 +54,14 @@ def generate_launch_description():
 
     ld = LaunchDescription()
 
-    lidar_node = launch_ros.actions.Node(
+    lidar_node_1 = launch_ros.actions.Node(
         package = 'cyglidar_d1_ros2',
-        executable = 'cyglidar_d1_publisher',
+        executable = 'cyglidar_d1_publisher_1',
         output = 'screen',
         parameters=[
            {"port_number": "/dev/ttyUSB0"},
            {"baud_rate": LaunchConfiguration("baud_rate_mode")},
-           {"frame_id": "laser_frame"},
+           {"frame_id": "laser_frame_1"},
            {"fixed_frame": "/map"},
            {"run_mode": LaunchConfiguration("version")},
            {"frequency_channel": LaunchConfiguration("frequency_level")},
@@ -73,9 +73,9 @@ def generate_launch_description():
         ]
     )
 
-    tf_node = launch_ros.actions.Node(
+    tf_node_1 = launch_ros.actions.Node(
         package = 'tf2_ros', executable = "static_transform_publisher", name="to_laserframe",
-        arguments = ["0", "0", "0", "0", "0", "0", "map", "laser_frame"]
+        arguments = ["0", "0", "0", "4", "0", "0", "map", "laser_frame_1"]
     )
 
     ld.add_action(baud_rate_value_arg)
@@ -86,7 +86,7 @@ def generate_launch_description():
     ld.add_action(color_display_arg)
     ld.add_action(min_resolution_arg)
     ld.add_action(max_resolution_arg)
-    ld.add_action(lidar_node)
-    ld.add_action(tf_node)
-
+    ld.add_action(lidar_node_1)
+    ld.add_action(tf_node_1)
+ 
     return ld

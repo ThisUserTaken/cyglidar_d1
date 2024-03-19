@@ -1,17 +1,17 @@
 #include "D1_Node.h"
 
-D1_Node::D1_Node() : Node("D1_Node")
+D1_Node::D1_Node() : Node("D1_Node_4")
 {
     topic_2d    = new Topic2D();
     topic_3d    = new Topic3D();
     cyg_driver  = new CYG_Driver();
     serial_port = new CYG_SerialUart();
 
-    topic_2d->initPublisher(this->create_publisher<sensor_msgs::msg::LaserScan>  ("scan",    10),
-                            this->create_publisher<sensor_msgs::msg::PointCloud2>("scan_2D", 10));
+    topic_2d->initPublisher(this->create_publisher<sensor_msgs::msg::LaserScan>  ("scan_4",    10),
+                            this->create_publisher<sensor_msgs::msg::PointCloud2>("scan_2D_4", 10));
 
-    topic_3d->initPublisher(this->create_publisher<sensor_msgs::msg::Image>      ("scan_image", 10),
-                            this->create_publisher<sensor_msgs::msg::PointCloud2>("scan_3D",    10));
+    topic_3d->initPublisher(this->create_publisher<sensor_msgs::msg::Image>      ("scan_image_4", 10),
+                            this->create_publisher<sensor_msgs::msg::PointCloud2>("scan_3D_4",    10));
 
     received_buffer[0].packet_data = first_total_packet_data;
     received_buffer[1].packet_data = second_total_packet_data;

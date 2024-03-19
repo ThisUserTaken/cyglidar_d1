@@ -16,7 +16,7 @@ def generate_launch_description():
     return LaunchDescription([
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
-                [ThisLaunchFileDir(), '/cyglidar.launch.py']),
+                [ThisLaunchFileDir(), '/cyglidar_1.launch.py']),
         ),
 
         Node(
